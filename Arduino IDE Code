@@ -1,0 +1,37 @@
+// The Code was Developed by Ramesh on 15 JAN 2023.
+// Last edited on 16 JAN 2023.
+
+#define led1 10   //red
+#define led2 9    //yelllow
+#define led3 8    //green
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+}
+
+void loop() {
+  if (Serial.available()) {
+    char val = Serial.read();
+    if (val == 'R') {
+      digitalWrite(led1, HIGH);
+    }
+    if (val == 'r') {
+      digitalWrite(led1, LOW);
+    }
+    if (val == 'Y') {
+      digitalWrite(led2, HIGH);
+    }
+    if (val == 'y') {
+      digitalWrite(led2, LOW);
+    }
+    if (val == 'G') {
+      digitalWrite(led3, HIGH);
+    }
+    if (val == 'g') {
+      digitalWrite(led3, LOW);
+    }
+  }
+}
