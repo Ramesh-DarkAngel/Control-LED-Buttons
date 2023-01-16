@@ -1,0 +1,92 @@
+// The Code was Developed by Ramesh on 15 JAN 2023.
+// Last edited on 16 JAN 2023.
+
+
+import controlP5.*;                              //import ControlP5 library
+import processing.serial.*;
+
+Serial port;
+
+ControlP5 cp5;                                   //create ControlP5 object
+PFont font;
+
+void setup() {
+
+  size(480, 360);                                //window size, (width, height)
+  port = new Serial(this, "COM3", 9600);         //Change Your COM Port Here
+
+  cp5 = new ControlP5(this);
+  font = createFont("calibri light bold", 22);   //Custom Font
+
+  cp5.addButton("red_on")                        //Name of the Button
+    .setPosition(40, 60)                         //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(255, 0, 0))
+    ;   
+  cp5.addButton("red_off")                       //Name of the Button
+    .setPosition(260, 60)                        //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(255, 0, 0))
+    ;   
+
+  cp5.addButton("green_on")                      //Name of the Button
+    .setPosition(40, 160)                        //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(0, 255, 0))
+    ;
+  cp5.addButton("green_off")                     //Name of the Button
+    .setPosition(260, 160)                       //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(0, 255, 0))
+    ;
+
+  cp5.addButton("yellow_on")                       //Name of the Button
+    .setPosition(40, 260)                        //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(255, 255, 0))
+    ;
+  cp5.addButton("yellow_off")                      //Name of the Button
+    .setPosition(260, 260)                       //(x,y) top left Corner
+    .setSize(180, 60)                            //(width, height)
+    .setFont(font)
+    .setColorBackground(color(255, 255, 0))
+    ;
+}
+
+void draw() {
+
+  background(50, 50, 50);                        //background color of window (r, g, b)
+  //Title
+  fill(255, 255, 255);                           //text color (r, g, b)
+  textFont(font);
+  text("LED Controls", 150, 30);           //("text", x, y)
+}
+
+void red_on() {
+  port.write('R');
+}
+
+void green_on() {
+  port.write('G');
+}
+
+void yellow_on() {
+  port.write('Y');
+}
+
+void red_off() {
+  port.write('r');
+}
+
+void green_off() {
+  port.write('g');
+}
+
+void yellow_off() {
+  port.write('y');
+}
